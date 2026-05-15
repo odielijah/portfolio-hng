@@ -92,7 +92,7 @@
           </div>
           <div>
             <p class="font-display font-semibold text-white text-sm leading-none">Odi's Assistant</p>
-            <p class="font-mono text-[10px] text-accent/60 mt-0.5">Powered by Gemini</p>
+            <p class="font-mono text-[10px] text-accent/60 mt-0.5">Portfolio assistant</p>
           </div>
         </div>
         <button
