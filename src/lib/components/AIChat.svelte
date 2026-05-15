@@ -77,11 +77,11 @@
 </script>
 
 <!-- Floating toggle button -->
-<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+<div class="fixed bottom-4 right-4 left-4 sm:bottom-6 sm:left-auto sm:right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
   {#if open}
     <!-- Chat panel -->
     <div
-      class="w-[340px] rounded-2xl glass border border-white/10 overflow-hidden shadow-2xl shadow-black/50 animate-fade-up"
+      class="pointer-events-auto w-full max-w-[360px] rounded-xl glass border border-white/10 overflow-hidden shadow-2xl shadow-black/50 animate-fade-up"
       role="region"
       aria-label="AI Portfolio Assistant"
     >
@@ -106,7 +106,7 @@
       <!-- Messages -->
       <div
         bind:this={chatEl}
-        class="h-72 overflow-y-auto p-4 space-y-3 scroll-smooth"
+        class="h-[min(18rem,45svh)] overflow-y-auto p-4 space-y-3 scroll-smooth"
         role="log"
         aria-live="polite"
         aria-label="Chat messages"
@@ -114,7 +114,7 @@
         {#each messages as msg}
           <div class="flex" class:justify-end={msg.role === 'user'}>
             <div
-              class="max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed"
+              class="max-w-[86%] px-3 py-2 rounded-xl text-sm leading-relaxed"
               class:bg-accent={msg.role === 'user'}
               class:text-ink-950={msg.role === 'user'}
               class:font-medium={msg.role === 'user'}
@@ -182,7 +182,7 @@
   <!-- Fab -->
   <button
     on:click={() => open = !open}
-    class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent/50"
+    class="pointer-events-auto w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent/50"
     style="background: linear-gradient(135deg, #7FFFD4, #5CE8B8);"
     aria-label={open ? 'Close AI assistant' : 'Open AI assistant'}
     aria-expanded={open}

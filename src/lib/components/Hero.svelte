@@ -41,7 +41,7 @@
     let h = canvasEl.height = window.innerHeight;
 
     const particles = [];
-    const count = Math.min(80, Math.floor(w * h / 12000));
+    const count = Math.min(w < 640 ? 36 : 80, Math.floor(w * h / 12000));
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * w,
@@ -103,7 +103,7 @@
   });
 </script>
 
-<section id="hero" class="relative min-h-screen flex flex-col justify-center overflow-hidden" aria-label="Hero section">
+<section id="hero" class="relative min-h-[100svh] flex flex-col justify-center overflow-hidden" aria-label="Hero section">
   <!-- Canvas background -->
   <canvas
     bind:this={canvasEl}
@@ -113,8 +113,8 @@
 
   <!-- Radial gradient glow -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px]"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-warm/5 blur-[80px]"></div>
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-[600px] sm:h-[600px] rounded-full bg-accent/5 blur-[90px] sm:blur-[120px]"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-[300px] sm:h-[300px] rounded-full bg-warm/5 blur-[70px] sm:blur-[80px]"></div>
   </div>
 
   <!-- Grid overlay -->
@@ -124,7 +124,7 @@
     aria-hidden="true"
   ></div>
 
-  <div class="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-16">
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 pt-28 pb-24 sm:pb-20">
     <div
       class="transition-all duration-1000"
       class:opacity-0={!visible}
@@ -133,26 +133,26 @@
       class:translate-y-0={visible}
     >
       <!-- Status badge -->
-      <div class="inline-flex items-center gap-2 mb-8 px-3 py-1.5 rounded-full glass text-xs font-mono text-accent/80 border border-accent/20">
+      <div class="inline-flex max-w-full items-center gap-2 mb-7 px-3 py-1.5 rounded-full glass text-[11px] sm:text-xs font-mono text-accent/80 border border-accent/20">
         <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-slow"></span>
-        Available for opportunities
+        <span class="truncate">Available for opportunities</span>
       </div>
 
       <!-- Main heading -->
       <h1 class="font-display font-extrabold leading-[1.05] tracking-tight">
-        <span class="block text-5xl md:text-7xl lg:text-[88px] text-white mb-2">
+        <span class="block text-[3.25rem] sm:text-6xl md:text-7xl lg:text-[88px] text-white mb-2">
           Odinaka<br />
           <span class="text-gradient">Esther.</span>
         </span>
       </h1>
 
       <!-- Typewriter subtitle -->
-      <p class="mt-6 font-display text-2xl md:text-3xl text-white/50 font-medium min-h-[2.5rem]">
-        I'm a <span class="text-white">{typedText}</span><span class="inline-block w-0.5 h-7 bg-accent align-middle ml-0.5 animate-blink"></span>
+      <p class="mt-5 sm:mt-6 font-display text-xl sm:text-2xl md:text-3xl text-white/50 font-medium min-h-[4rem] sm:min-h-[2.5rem] max-w-[18rem] sm:max-w-none">
+        I'm a <span class="text-white">{typedText}</span><span class="inline-block w-0.5 h-6 sm:h-7 bg-accent align-middle ml-0.5 animate-blink"></span>
       </p>
 
       <!-- Description -->
-      <p class="mt-6 max-w-xl text-white/50 font-body text-base md:text-lg leading-relaxed"
+      <p class="mt-5 sm:mt-6 max-w-xl text-white/55 font-body text-[15px] sm:text-base md:text-lg leading-relaxed"
          style="transition-delay: 200ms"
          class:opacity-0={!visible}
          class:opacity-100={visible}
@@ -161,24 +161,24 @@
       </p>
 
       <!-- CTAs -->
-      <div class="mt-10 flex flex-wrap gap-4" style="transition-delay: 400ms">
+      <div class="mt-9 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4" style="transition-delay: 400ms">
         <a
           href="#projects"
-          class="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-ink-950 font-display font-bold text-sm hover:bg-accent-dim transition-all duration-300 hover:scale-105"
+          class="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-accent text-ink-950 font-display font-bold text-sm hover:bg-accent-dim transition-all duration-300 hover:scale-105"
         >
           View my work
           <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
         </a>
         <a
           href="#contact"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white/70 font-display font-medium text-sm hover:border-accent/50 hover:text-accent transition-all duration-300"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white/70 font-display font-medium text-sm hover:border-accent/50 hover:text-accent transition-all duration-300"
         >
           Get in touch
         </a>
       </div>
 
       <!-- Social links -->
-      <div class="mt-12 flex items-center gap-6" style="transition-delay: 600ms">
+      <div class="mt-10 sm:mt-12 flex flex-wrap items-center gap-x-5 gap-y-3" style="transition-delay: 600ms">
         <a href="https://github.com/odinaka" target="_blank" rel="noopener noreferrer" class="text-white/30 hover:text-accent transition-colors duration-300 font-mono text-xs tracking-wider" aria-label="GitHub">
           GitHub ↗
         </a>
@@ -195,7 +195,7 @@
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20" aria-hidden="true">
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-white/20" aria-hidden="true">
     <span class="font-mono text-[10px] tracking-widest">SCROLL</span>
     <div class="w-px h-12 bg-gradient-to-b from-white/20 to-transparent animate-pulse-slow"></div>
   </div>

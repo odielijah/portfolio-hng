@@ -41,15 +41,15 @@
   $: form.message = sanitize(form.message);
 </script>
 
-<section id="contact" bind:this={sectionEl} class="py-28 max-w-6xl mx-auto px-6" aria-label="Contact">
-  <div class="grid md:grid-cols-2 gap-16 items-start">
+<section id="contact" bind:this={sectionEl} class="py-20 md:py-28 max-w-6xl mx-auto px-5 sm:px-6" aria-label="Contact">
+  <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
     <!-- Left copy -->
     <div class="section-reveal">
       <p class="font-mono text-xs text-accent/60 tracking-widest uppercase mb-4">Get in Touch</p>
-      <h2 class="font-display text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
         Let's build<br />something<br /><span class="text-gradient">great.</span>
       </h2>
-      <p class="text-white/50 text-sm leading-relaxed mb-8">
+      <p class="text-white/55 text-sm leading-relaxed mb-8 max-w-xl">
         Open to frontend engineering roles, freelance projects, and interesting collaborations. Based in Lagos — available remotely too.
       </p>
 
@@ -64,12 +64,12 @@
             href={contact.href}
             target={contact.href.startsWith('http') ? '_blank' : undefined}
             rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            class="flex items-center gap-4 group"
+            class="flex min-w-0 items-center gap-4 group"
           >
             <span class="text-xl" aria-hidden="true">{contact.icon}</span>
-            <div>
+            <div class="min-w-0">
               <p class="font-mono text-[10px] text-white/30 tracking-wider uppercase">{contact.label}</p>
-              <p class="font-body text-sm text-white/60 group-hover:text-accent transition-colors duration-300">{contact.value}</p>
+              <p class="break-words font-body text-sm text-white/60 group-hover:text-accent transition-colors duration-300">{contact.value}</p>
             </div>
           </a>
         {/each}
@@ -79,7 +79,7 @@
     <!-- Form -->
     <div class="section-reveal" style="transition-delay: 200ms">
       {#if status === 'sent'}
-        <div class="h-full flex flex-col items-center justify-center text-center py-16 gap-4 rounded-2xl border border-accent/20 bg-accent/5">
+        <div class="h-full flex flex-col items-center justify-center text-center py-16 gap-4 rounded-xl border border-accent/20 bg-accent/5">
           <span class="text-4xl">🎉</span>
           <p class="font-display text-xl font-bold text-white">Message sent!</p>
           <p class="text-white/50 text-sm">I'll get back to you soon.</p>

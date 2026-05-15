@@ -23,13 +23,10 @@
 </script>
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-  class:glass={scrolled}
-  class:py-3={scrolled}
-  class:py-6={!scrolled}
+  class={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass py-3' : 'py-4 sm:py-6'}`}
   aria-label="Main navigation"
 >
-  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 flex items-center justify-between">
     <!-- Logo -->
     <a href="/" class="font-display font-bold text-lg tracking-tight group" aria-label="Home">
       <span class="text-white group-hover:text-accent transition-colors duration-300">odi</span><span class="text-accent">.</span>
@@ -64,7 +61,7 @@
 
     <!-- Mobile menu button -->
     <button
-      class="md:hidden text-white/70 hover:text-white transition-colors p-1"
+      class="md:hidden text-white/70 hover:text-white transition-colors p-2 -mr-2"
       on:click={() => mobileOpen = !mobileOpen}
       aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={mobileOpen}
@@ -79,17 +76,17 @@
 
   <!-- Mobile menu -->
   {#if mobileOpen}
-    <div class="md:hidden glass border-t border-white/5 px-6 py-6 flex flex-col gap-6">
+    <div class="md:hidden glass border-t border-white/5 px-5 py-6 flex max-h-[calc(100svh-4.5rem)] flex-col gap-5 overflow-y-auto">
       {#each links as link}
         <a
           href={link.href}
-          class="text-white/70 hover:text-accent font-display text-xl font-semibold transition-colors"
+          class="text-white/70 hover:text-accent font-display text-lg font-semibold transition-colors"
           on:click={closeMenu}
         >
           {link.label}
         </a>
       {/each}
-      <a href="/resume.pdf" target="_blank" class="text-accent font-display text-xl font-semibold" on:click={closeMenu}>
+      <a href="/resume.pdf" target="_blank" class="text-accent font-display text-lg font-semibold" on:click={closeMenu}>
         Resume ↗
       </a>
     </div>

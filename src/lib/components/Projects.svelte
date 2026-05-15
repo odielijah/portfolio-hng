@@ -32,22 +32,22 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<section id="projects" bind:this={sectionEl} class="py-28 max-w-6xl mx-auto px-6" aria-label="Projects">
+<section id="projects" bind:this={sectionEl} class="py-20 md:py-28 max-w-6xl mx-auto px-5 sm:px-6" aria-label="Projects">
   <!-- Header -->
-  <div class="section-reveal mb-16">
+  <div class="section-reveal mb-10 md:mb-16">
     <p class="font-mono text-xs text-accent/60 tracking-widest uppercase mb-4">Selected Work</p>
-    <h2 class="font-display text-4xl md:text-5xl font-bold text-white leading-tight">
+    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
       Things I've<br /><span class="text-gradient">built.</span>
     </h2>
   </div>
 
   <!-- Filter tabs -->
-  <div class="section-reveal mb-12 flex flex-wrap gap-2" role="tablist" aria-label="Project filters">
+  <div class="section-reveal mb-8 md:mb-12 flex gap-2 overflow-x-auto pb-2 sm:flex-wrap sm:overflow-visible" role="tablist" aria-label="Project filters">
     {#each filters as f}
       <button
         role="tab"
         aria-selected={activeFilter === f}
-        class="px-4 py-1.5 rounded-full font-mono text-xs tracking-wider transition-all duration-300"
+        class="shrink-0 px-4 py-1.5 rounded-full font-mono text-xs tracking-wider transition-all duration-300"
         class:bg-accent={activeFilter === f}
         class:text-ink-950={activeFilter === f}
         class:text-white={activeFilter !== f}
@@ -70,7 +70,7 @@
     {#each filtered as project, i}
       <button
         type="button"
-        class="section-reveal group relative w-full rounded-2xl glow-border p-6 text-left cursor-pointer transition-all duration-500 hover:-translate-y-1 bg-ink-900/50 overflow-hidden"
+        class="section-reveal group relative w-full rounded-xl glow-border p-5 sm:p-6 text-left cursor-pointer transition-all duration-500 hover:-translate-y-1 bg-ink-900/50 overflow-hidden"
         style="transition-delay: {i * 80}ms"
         on:click={() => openModal(project)}
         aria-label="Open {project.title} details"
@@ -85,9 +85,9 @@
 
         <div class="relative z-10">
           <!-- Emoji + category -->
-          <div class="flex items-start justify-between mb-4">
-            <span class="text-3xl" aria-hidden="true">{project.emoji}</span>
-            <span class="font-mono text-[10px] text-white/30 tracking-widest uppercase mt-1">{project.category} · {project.year}</span>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="text-3xl shrink-0" aria-hidden="true">{project.emoji}</span>
+            <span class="font-mono text-[10px] text-right text-white/30 tracking-widest uppercase mt-1">{project.category} · {project.year}</span>
           </div>
 
           <!-- Title -->
@@ -96,7 +96,7 @@
           </h3>
 
           <!-- Description -->
-          <p class="text-sm text-white/50 leading-relaxed mb-5">
+          <p class="text-sm text-white/55 leading-relaxed mb-5">
             {project.description}
           </p>
 
@@ -126,7 +126,7 @@
 {#if selectedProject}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="fixed inset-0 z-50 flex items-center justify-center p-6"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
     role="dialog"
     aria-modal="true"
     aria-label={selectedProject.title}
@@ -139,7 +139,7 @@
     ></div>
 
     <!-- Panel -->
-    <div class="relative z-10 w-full max-w-lg rounded-2xl glass border border-white/10 p-8 animate-fade-up">
+    <div class="relative z-10 max-h-[calc(100svh-2rem)] w-full max-w-lg overflow-y-auto rounded-xl glass border border-white/10 p-5 sm:p-8 animate-fade-up">
       <button
         on:click={closeModal}
         class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full border border-white/10 text-white/40 hover:text-white hover:border-white/30 transition-colors"
@@ -166,7 +166,7 @@
       </div>
 
       <!-- Links -->
-      <div class="flex gap-3">
+      <div class="flex flex-col sm:flex-row gap-3">
         {#if selectedProject.github}
           <a
             href={selectedProject.github}

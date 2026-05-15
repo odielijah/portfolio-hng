@@ -2,12 +2,12 @@
   const year = new Date().getFullYear();
 </script>
 
-<footer class="border-t border-white/5 py-8 px-6">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="font-mono text-xs text-white/20">
+<footer class="border-t border-white/5 py-8 px-5 sm:px-6">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+    <p class="font-mono text-[11px] sm:text-xs text-white/20">
       © {year} Odinaka Esther Elijah — Built with SvelteKit
     </p>
-    <div class="flex gap-6">
+    <div class="flex flex-wrap justify-center gap-x-5 gap-y-2">
       {#each [
         { label: 'GitHub', href: 'https://github.com/odinaka' },
         { label: 'LinkedIn', href: 'https://linkedin.com/in/odinaka' },

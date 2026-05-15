@@ -20,11 +20,11 @@
   });
 </script>
 
-<section id="skills" bind:this={sectionEl} class="py-28 bg-ink-900/30 border-y border-white/5" aria-label="Skills">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="section-reveal mb-16">
+<section id="skills" bind:this={sectionEl} class="py-20 md:py-28 bg-ink-900/30 border-y border-white/5" aria-label="Skills">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="section-reveal mb-10 md:mb-16">
       <p class="font-mono text-xs text-accent/60 tracking-widest uppercase mb-4">Expertise</p>
-      <h2 class="font-display text-4xl md:text-5xl font-bold text-white leading-tight">
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
         Skills &<br /><span class="text-gradient">tools.</span>
       </h2>
     </div>
@@ -38,7 +38,7 @@
             </span>
             <span class="font-mono text-xs text-white/30">{skill.level}%</span>
           </div>
-          <div class="h-px bg-ink-600 rounded-full overflow-hidden">
+          <div class="h-1 bg-ink-600/70 rounded-full overflow-hidden">
             <div
               class="h-full rounded-full transition-all duration-1000 ease-out"
               style="
