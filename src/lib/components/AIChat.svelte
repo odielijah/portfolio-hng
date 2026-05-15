@@ -24,6 +24,7 @@
     const userText = (text || input).trim();
     if (!userText || loading) return;
 
+    const chatHistory = messages.slice(-6);
     input = '';
     messages = [...messages, { role: 'user', content: userText }];
     loading = true;
@@ -35,10 +36,8 @@
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userText, history: messages.slice(-6) }),
+        body: JSON.stringify({ message: userText, history: chatHistory }),
       });
-
-      if (!response.ok) throw new Error('API error');
 
       const data = await response.json();
       messages = [...messages, { role: 'assistant', content: data.reply }];
@@ -93,7 +92,7 @@
           </div>
           <div>
             <p class="font-display font-semibold text-white text-sm leading-none">Odi's Assistant</p>
-            <p class="font-mono text-[10px] text-accent/60 mt-0.5">Powered by Claude</p>
+            <p class="font-mono text-[10px] text-accent/60 mt-0.5">Powered by Gemini</p>
           </div>
         </div>
         <button

@@ -1,6 +1,6 @@
 # Odinaka Esther — Portfolio
 
-A cinematic, interactive developer portfolio built with **SvelteKit**, **TailwindCSS**, and powered by an **AI assistant** (Claude).
+A cinematic, interactive developer portfolio built with **SvelteKit**, **TailwindCSS**, and powered by an **AI assistant** (Gemini via proxy).
 
 ## 🚀 Setup
 
@@ -16,10 +16,10 @@ npm run preview    # preview production build
 Create a `.env` file in the root:
 
 ```
-ANTHROPIC_API_KEY=your_key_here
+GEMINI_PROXY_URL=https://ai-summarizer-proxy.vercel.app/api/summarize
 ```
 
-The AI chat endpoint (`/api/chat`) uses this key. Without it, the chatbot will show an error state.
+The AI chat endpoint (`/api/chat`) forwards requests to this proxy URL. Without it, the chatbot will show an error state.
 
 ## 🏗️ Architecture
 
@@ -29,7 +29,7 @@ src/
 │   ├── +layout.svelte     # Root layout (Nav, Cursor, Footer, AIChat)
 │   ├── +page.svelte       # Home page — composes all sections
 │   └── api/
-│       ├── chat/          # AI assistant endpoint (Claude claude-haiku-4-5-20251001)
+│       ├── chat/          # AI assistant endpoint (Gemini proxy)
 │       └── contact/       # Contact form submission endpoint
 └── lib/
     ├── data.js            # Projects, skills, marquee data
@@ -69,7 +69,7 @@ src/
 - **Canvas**: Particle count scales with viewport (`Math.floor(w*h/12000)`) — fewer on small screens
 - **IntersectionObserver**: Sections animate only when visible, never wastefully
 - **Cursor**: Disabled on touch/pointer:coarse devices (mobile) to avoid unnecessary listeners
-- **API**: Claude Haiku for chat (fastest, cheapest model)
+- **API**: Gemini through a server-side proxy
 - **No heavy animation libraries**: GSAP, Framer Motion, etc. not used — all animations via CSS + canvas
 
 ## ♿ Accessibility
@@ -90,7 +90,7 @@ src/
 |---|---|
 | No Svelte stores | Simpler for a portfolio; would need stores if state was shared across many components |
 | Canvas particles (not Three.js) | Much smaller bundle; Three.js would enable richer 3D but adds ~600KB |
-| Haiku for chat | Faster + cheaper than Sonnet; slightly less nuanced but perfect for FAQ-style queries |
+| Gemini proxy for chat | Keeps provider details off the client and lets the proxy own API keys/rate limits |
 | No SSG/prerender | Keeps API routes working easily; could add `prerender = true` to the page route for static hosting |
 | Tailwind utility classes | More verbose HTML but eliminates CSS specificity issues and unused styles are purged |
 
@@ -103,6 +103,6 @@ npm i -g vercel
 vercel
 ```
 
-Set `ANTHROPIC_API_KEY` in your Vercel environment variables dashboard.
+Set `GEMINI_PROXY_URL` in your Vercel environment variables dashboard.
 
 Or use **Netlify** with `@sveltejs/adapter-netlify`.
